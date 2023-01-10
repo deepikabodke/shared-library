@@ -3,11 +3,11 @@ import hudson.tasks.test.AbstractTestResultAction
 def call(String name = 'User') {
     echo "Welcome, ${name}."
 
-    AbstractTestResultAction testResultAction =  currentBuild.rawBuild.getAction(AbstractTestResultAction.class)
+    /*AbstractTestResultAction testResultAction =  currentBuild.rawBuild.getAction(AbstractTestResultAction.class)
     if (testResultAction != null) {
         echo "Tests: ${testResultAction.failCount} / ${testResultAction.failureDiffString} failures of ${testResultAction.totalCount}.\n\n"
-    }
-     /*def testResultAction = currentBuild.rawBuild.getAction(AbstractTestResultAction.class)
+    }*/
+     def testResultAction = currentBuild.rawBuild.getAction(AbstractTestResultAction.class)
      def summary = ""
 
      if (testResultAction != null) {
@@ -22,7 +22,7 @@ def call(String name = 'User') {
      } else {
          summary = "No tests found"
      }
-     return summary*/
+     return summary
 
     /*@NonCPS
     def testStatuses() {
