@@ -27,7 +27,7 @@ ArrayList<LinkedHashMap<String, String>> buildNotificationMessage() {
         String readableDuration = build.getDurationString()
         String took = readableDuration.replace('and counting', '')
 
-        ArrayList<LinkedHashMap<String, String>> facts = ("Started At: ${startedAt} \n Completed At : ${completedAt} \n Took:  ${took}")
+        ArrayList<LinkedHashMap<String, String>> facts = ["Started At: ${startedAt} \n Completed At : ${completedAt} \n Took:  ${took}"]
         String branchName = env.GIT_BRANCH
         if (branchName) {
             facts.addAll(["\n Branch", branchName])
@@ -53,13 +53,12 @@ void captureTestDetails(AbstractTestResultAction testResultAction, ArrayList<Lin
             String passedPercent = df.format(passed / totalTests)
             String failedPercent = df.format(failed / totalTests)
             String skippedPercent = df.format(skipped / totalTests)
-            facts.addAll("\n Total Tests: ${totalTests} \n Passed:${passed} \n Passed Percentage: ${passedPercent} \nFailed:${failed} ${failedDiff} \n Failed Percentage: ${failedPercent}")
+            facts.addAll(["\n Total Tests: ${totalTests} \n Passed:${passed} \n Passed Percentage: ${passedPercent} \nFailed:${failed} ${failedDiff} \n Failed Percentage: ${failedPercent}"])
             if (skipped > 0) {
-                facts.addAll([[name: "Skipped", template: "${skipped}"],
-                              [name: "Skipped Percentage", template: "${skippedPercent}"]]);
+                facts.addAll(["\n Skipped: ${skipped} \n Skipped Percentage: ${skippedPercent}"]);
             }
         }
     } else {
-        facts.add([name: "Test Summary", template: "Test results unavailable"])
+        facts.add(["Test Summary: Test results unavailable"])
     }
 }
