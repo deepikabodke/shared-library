@@ -27,10 +27,7 @@ ArrayList<LinkedHashMap<String, String>> buildNotificationMessage() {
         String readableDuration = build.getDurationString()
         String took = readableDuration.replace('and counting', '')
 
-        ArrayList<LinkedHashMap<String, String>> facts = [["Started At", "${startedAt}"],
-                                                          [name: "Completed At", template: "${completedAt}"],
-                                                          [name: "Took", template: "${took}"]
-        ]
+        ArrayList<LinkedHashMap<String, String>> facts = ["Started At", "${startedAt}", "\n Completed At", "${completedAt}", "\n Took", "${took}"]
         String branchName = env.GIT_BRANCH
         if (branchName) {
             facts.addAll([name: "Branch", template: branchName])
